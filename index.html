@@ -31,7 +31,7 @@
       color: #fff;
     }
 
-    .content//d {
+    .content//dis/- {
       background-color: rgba(255, 255, 255, 0.2); /* subtle overlay for readability */
       border-radius: 20px;
       padding: 2em 1.5em;
@@ -42,6 +42,7 @@
     h1 {
       font-size: 4vw; /* scales with screen width */
       margin-bottom: 0.5em;
+      margin-top: 5em;
       line-height: 1.2;
       color: black;
     }
@@ -54,7 +55,6 @@
 
     #clock {
       font-size: clamp(1rem, 5vw, 2rem);
-      margin-top: 1em;
       font-weight: bold;
       color: black;
       text-shadow: 0 0 5px #00000050;
@@ -75,23 +75,37 @@
 <body>
   <div class="content">
     <h1>🎉 Happy Birthday, Grace!</h1>
-    <p>Hi Grace! Grasce? aku gak tau ngeja namamu :><br>sekarang udah jam<br><div id="clock"></div>
-</p>
+    <p>Hi Grace! Grasce? aku gak tau ngeja namamu :><br>sekarang harusnya udah lewat 12 malam
+    </p>
   </div>
 
   <script>
-    function updateClock() {
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      const timeString = `${hours}:${minutes}:${seconds}`;
-      document.getElementById('clock').textContent = timeString;
-    }
+  function updateClock() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
 
-    setInterval(updateClock, 1000); // Update every second
-    updateClock(); // Run once on load
+    const timeString = `${hours.toString().padStart(2, '0')}:${minutes
+      .toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    
+    document.getElementById('clock').textContent = timeString;
+
+    // Logic: If time is midnight or later
+    if (hours === 0 && minutes === 0 && seconds === 0) {
+      document.getElementById('status').textContent = "Yes";
+    } else if (hours === 0) {
+      // between 00:00 and 00:59
+      document.getElementById('status').textContent = "Yes";
+    } else {
+      document.getElementById('status').textContent = "Not yet";
+    }
+  }
+
+  setInterval(updateClock, 1000);
+  updateClock();
   </script>
+
 
 </body>
 </html>
