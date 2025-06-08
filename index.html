@@ -23,11 +23,12 @@
       background: url('background.png') no-repeat center center fixed;
       background-size: cover;
       display: flex;
-      justify-content: center;
+      flex-direction: column;         /* vertical layout */
       align-items: center;
+      justify-content: flex-start;    /* align items to the top */
+      padding: 2vh 1em;
       text-align: center;
       color: #fff;
-      padding: 1em;
     }
 
     .content//d {
@@ -64,7 +65,7 @@
 </head>
 <body>
   <div class="content">
-    <h1>🎉 Happy Birthday, [Name]!</h1>
+    <h1>🎉 Happy Birthday, Grace!</h1>
     <p>Wishing you a day full of smiles, surprises, and sweet moments. 💖</p>
   </div>
 </body>
